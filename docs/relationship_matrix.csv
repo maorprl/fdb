@@ -1,0 +1,33 @@
+#,תחום,טבלת מקור,שדה מקור,טבלת יעד,שדה יעד,אוכלוסייה נבדקת,התאמות,לא נמצאו,NULL במקור,רמת אימות,תחולה / תנאי,קרדינליות,ייצוג ב-ERD,ראיות / סייגים
+1,News,CompanyNews,company_id,New_Company,id,94854,94818,36.0,0.0,B | חריגות,כל הרשומות,N:1,קשר לוגי מקווקו,36 מזהי חברה לא נמצאו
+2,News,CompanyNews,news_id,News,id,94854,94830,24.0,0.0,B | חריגות,כל הרשומות,N:1,קשר לוגי מקווקו,"היעד הוא News.id, לא News.news_id"
+3,News,New_Company_news,origin_entity_id,New_Company,id,57097,57092,5.0,0.0,B | חריגות,כל הרשומות,N:1,קשר לוגי מקווקו,"מודל חדשות מקביל, כולל העתקי תוכן"
+4,News,New_Company_news,news_id,News,news_id,57097,47013,590.0,9494.0,C | לא FK,כל הרשומות,לא נקבע,הערת חפיפה בלבד,News.news_id אינו ייחודי; התאמה אינה FK של ERD
+5,Classification,BaseClassificationModel,root_key,BaseClassificationModel,id,500,500,0.0,0.0,A | התאמה מלאה,500 סיווגים,N:1,קשר לוגי מלא,43 שורשים בעומק 0 מפנים לעצמם
+6,Classification,BaseClassificationRelationModel,parent_key,BaseClassificationModel,id,457,457,0.0,0.0,A | התאמה מלאה,457 קשרי היררכיה,N:1,קשר לוגי מלא,יער של 43 עצים; לכל ילד הורה אחד
+7,Classification,BaseClassificationRelationModel,child_key,BaseClassificationModel,id,457,457,0.0,0.0,A | התאמה מלאה,457 קשרי היררכיה,1:1 נצפה,קשר לוגי מלא,כל ילד מופיע בקשר להורה יחיד
+8,Classification,BaseClassificationCompanyModel,classification_key,BaseClassificationModel,id,161373,153322,8051.0,0.0,B | חריגות,כל הרשומות,N:1,קשר לוגי מקווקו,8051 שיוכים למזהי סיווג חסרים: 7851 Sector ו-200 Industry
+9,Classification,BaseClassificationCompanyModel,company_key,New_Company,id,161373,158370,1804.0,1199.0,B | חריגות,כל הרשומות,N:1,קשר לוגי מקווקו,4891 רשומות עודפות בצירוף company_type/category/company/classification
+10,Classification,New_Company,primary_sector_key,BaseClassificationModel,id,14182,14182,0.0,,A | התאמה מלאה,מאוכלסים בלבד,N:1,קשר לוגי מלא,התאמה מלאה של ערכים מאוכלסים; אין להסיק סמנטיקה מעבר לשם השדה
+11,Tags,New_Company_Tag,company,New_Company,id,171082,168608,2474.0,0.0,B | חריגות,כל הרשומות,N:1,קשר לוגי מקווקו,"273 רשומות עודפות לפי (company,tag,company_type)"
+12,Tags,New_Company_Tag,tag,New_Tag,id,171082,149338,130.0,21614.0,B | חריגות,כל הרשומות,N:1,קשר לוגי מקווקו,21614 רשומות חסרות tag וגם tag_name
+13,Member,New_Member,company,New_Company,id,64224,62727,1283.0,214.0,B | חריגות,כל הרשומות,N:1 נצפה,קשר לוגי מקווקו,64010 מאוכלסים; 938 מזהים שונים חסרים; user מפנה לטבלה חיצונית
+14,Events,BaseEvent,company_key,New_Company,id,37408,36951,456.0,1.0,B | חריגות,כל סוגי האירועים,N:1,קשר לוגי מקווקו,חברה הקשורה לאירוע; תפקידה תלוי event_type
+15,Events,BaseEvent,other_party_entity_key,New_Company,id,2591,2570,8.0,13.0,B | חריגות,MNAEvent בלבד,N:1,קשר לוגי מקווקו,2578 מאוכלסים; תפקיד הצד תלוי was_acquired
+16,Events,BaseEvent,stock_exchange_key,New_Company,id,1043,1039,4.0,,B | חריגות,POEvent; יעד type='Stock Exchange',N:1,קשר לוגי מקווקו,4 מפתחות לא נמצאו לפי המדידה המתועדת
+17,Events,BaseEvent,stock_exchange_key,New_Company,id,65,64,,,B | חסר פירוט,ReverseMergerEvent; יעד type='Stock Exchange',N:1,אותו קשר + הערת תנאי,64 קישורי בורסה תקינים; סטטוס האירוע ה-65 לא פורט
+18,Events,BaseEvent,acquired_company_entity_key,New_Company,id,67,67,0.0,,A | התאמה מלאה,"63 ReverseMerger, 3 Spac, 1 PO",N:1,קשר לוגי מלא,הקשר מאומת ל-67 ערכים מאוכלסים בלבד
+19,Events,BaseEvent,institution_entity_key,New_Company,id,4417,4217,200.0,,B | חריגות,GraduationEvent בלבד,N:1,קשר לוגי מקווקו,ההתאמה לא מלאה
+20,Events,BaseEvent,merged_with_entity_key,New_Company,id,23,23,0.0,,A | התאמה מלאה,SpacEvent בלבד,N:1,קשר לוגי מלא,23 מאוכלסים ותואמים
+21,Events,BaseEvent,community_key,New_Company,id,202,199,3.0,,B | חריגות,CommunityInvolvementEvent בלבד,N:1,קשר לוגי מקווקו,128 מזהים שונים; ישויות Community/Accelerator ועוד
+22,Events,BaseEvent_investors,origin_entity_id,BaseEvent,id,32988,32988,0.0,0.0,A | התאמה מלאה,כל הרשומות,N:1,קשר לוגי מלא,"32967 FundingRoundEvent, 17 ICOEvent, 4 GrantEvent"
+23,Events,BaseEvent_investors,investors_entity_entity_key,New_Company,id,32988,32899,57.0,32.0,B | חריגות,כל הרשומות,N:1,קשר לוגי מקווקו,"14 צמדים כפולים, 15 רשומות עודפות; לא לאחד על סמך צמד"
+24,Events,BaseEvent_grantors,origin_entity_id,BaseEvent,id,1859,1853,6.0,0.0,B | חריגות,כל הרשומות,N:1,קשר לוגי מקווקו,1853 תקינים מכסים 1760 אירועי Grant; 358 אירועים ללא grantor
+25,Events,BaseEvent_grantors,grantors_entity_entity_key,New_Company,id,1853,1621,164.0,68.0,B | חריגות,רק 1853 רשומות עם אירוע תקין,N:1,קשר לוגי מקווקו,אין להסיק מכאן את מצב המפתח ב-6 רשומות האירוע החריגות
+26,Funding,New_Funding_Round,startup,New_Company,id,11716,11639,,,B | חסר פירוט,כל הסבבים,N:1,קשר לוגי מקווקו,77 רשומות ללא התאמה מדווחת; פיצול NULL/לא נמצא לא מתועד
+27,Funding,New_Funding_Round_known_investors,origin_entity_id,New_Funding_Round,id,11610,11610,0.0,0.0,A | התאמה מלאה,כל הרשומות,N:1,קשר לוגי מלא,7 צמדים כפולים זהים מלבד id
+28,Funding,New_Funding_Round_known_investors,known_investors,New_Company,id,11610,11547,63.0,0.0,B | חריגות,כל הרשומות,N:1,קשר לוגי מקווקו,63 רשומות מפנות ל-10 מזהים שונים שלא נמצאו
+29,Funding,New_Funding_Round_unknown_investors,origin_entity_id,New_Funding_Round,id,11499,11499,0.0,0.0,A | התאמה מלאה,כל הרשומות,N:1,קשר לוגי מלא,"unknown_investors הוא שם חופשי, לא מזהה חברה; 12 צמדים כפולים"
+30,Company self,New_Company,acquired_by_key,New_Company,id,796,788,8.0,,B | חריגות,מאוכלסים בלבד,N:1,קשר לוגי מקווקו,הפניה עצמית מועמדת; תפקיד עסקי לפי שם השדה בלבד
+31,Company self,New_Company,tto_key,New_Company,id,1904,1904,0.0,,A | התאמה מלאה,מאוכלסים בלבד,N:1,קשר לוגי מלא,"הפניה עצמית מועמדת, ללא פירוש עסקי נוסף"
+32,Company self,New_Company,r_d_due_to_acquisition_key,New_Company,id,96,87,9.0,,B | חריגות,מאוכלסים בלבד,N:1,קשר לוגי מקווקו,כל 87 היעדים שנמצאו הם מסוג Startup

@@ -1,0 +1,142 @@
+digraph FinderERD {
+	graph [bgcolor="#FFFFFF" compound=true fontcolor="#253954" fontname="DejaVu Sans" fontsize=21 label="FINDER / FDB - LOGICAL ERD\nOVERVIEW | 16 tables | 30 distinct tested field references | 2026-11-19" labeljust=l labelloc=t margin=.1 newrank=true nodesep=.55 pad=.42 rankdir=LR ranksep=1.5 splines=spline]
+	node [fontname="DejaVu Sans" margin=0 shape=plain]
+	edge [arrowsize=.74 fontcolor="#536479" fontname="DejaVu Sans" fontsize=9 penwidth=1.9]
+	subgraph cluster_Core {
+		color="#E3E8EF" fillcolor="#F2F5FA" fontcolor="#2B4262" fontname="DejaVu Sans" fontsize=11 label=CORE labelloc=t margin=16 penwidth=1.0 style="rounded,filled"
+		New_Company [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#2B4262" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>New_Company</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">acquired_by_key &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">tto_key &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">+2 documented fields &nbsp; [FK*]</FONT></TD></TR>
+</TABLE>>]
+	}
+	subgraph cluster_Membership {
+		color="#E3E8EF" fillcolor="#F5F8FC" fontcolor="#456E93" fontname="DejaVu Sans" fontsize=11 label=MEMBERSHIP labelloc=t margin=16 penwidth=1.0 style="rounded,filled"
+		New_Member [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#456E93" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>New_Member</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">company &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#65768B" POINT-SIZE="9">user [external] &nbsp; [field]</FONT></TD></TR>
+</TABLE>>]
+	}
+	subgraph cluster_News {
+		color="#E3E8EF" fillcolor="#EAF5F8" fontcolor="#25667D" fontname="DejaVu Sans" fontsize=11 label=NEWS labelloc=t margin=16 penwidth=1.0 style="rounded,filled"
+		News [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#25667D" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>News</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#65768B" POINT-SIZE="9">news_id [not unique] &nbsp; [field]</FONT></TD></TR>
+</TABLE>>]
+		CompanyNews [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#25667D" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>CompanyNews</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">company_id &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">news_id &nbsp; [FK*]</FONT></TD></TR>
+</TABLE>>]
+		New_Company_news [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#25667D" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>New_Company_news</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">origin_entity_id &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#65768B" POINT-SIZE="9">news_id [not FK] &nbsp; [field]</FONT></TD></TR>
+</TABLE>>]
+	}
+	subgraph cluster_Classification {
+		color="#E3E8EF" fillcolor="#F2EFF9" fontcolor="#66569A" fontname="DejaVu Sans" fontsize=11 label=CLASSIFICATION labelloc=t margin=16 penwidth=1.0 style="rounded,filled"
+		BaseClassificationModel [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#66569A" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>BaseClassificationModel</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">root_key &nbsp; [FK*]</FONT></TD></TR>
+</TABLE>>]
+		BaseClassificationRelationModel [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#66569A" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>BaseClassificationRelationModel</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">parent_key &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">child_key &nbsp; [FK*]</FONT></TD></TR>
+</TABLE>>]
+		BaseClassificationCompanyModel [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#66569A" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>BaseClassificationCompanyModel</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">classification_key &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">company_key &nbsp; [FK*]</FONT></TD></TR>
+</TABLE>>]
+	}
+	subgraph cluster_Tags {
+		color="#E3E8EF" fillcolor="#F3F8E9" fontcolor="#678144" fontname="DejaVu Sans" fontsize=11 label=TAGS labelloc=t margin=16 penwidth=1.0 style="rounded,filled"
+		New_Tag [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#678144" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>New_Tag</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+</TABLE>>]
+		New_Company_Tag [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#678144" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>New_Company_Tag</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">company &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">tag &nbsp; [FK*]</FONT></TD></TR>
+</TABLE>>]
+	}
+	subgraph cluster_Events {
+		color="#E3E8EF" fillcolor="#FCF4EC" fontcolor="#966545" fontname="DejaVu Sans" fontsize=11 label=EVENTS labelloc=t margin=16 penwidth=1.0 style="rounded,filled"
+		BaseEvent [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#966545" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>BaseEvent</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">company_key &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">other_party_entity_key &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">+5 documented fields &nbsp; [FK*]</FONT></TD></TR>
+</TABLE>>]
+		BaseEvent_investors [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#966545" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>BaseEvent_investors</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">origin_entity_id &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">investors_entity_entity_key &nbsp; [FK*]</FONT></TD></TR>
+</TABLE>>]
+		BaseEvent_grantors [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#966545" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>BaseEvent_grantors</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">origin_entity_id &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">grantors_entity_entity_key &nbsp; [FK*]</FONT></TD></TR>
+</TABLE>>]
+	}
+	subgraph cluster_Funding {
+		color="#E3E8EF" fillcolor="#F5EFF9" fontcolor="#70568A" fontname="DejaVu Sans" fontsize=11 label=FUNDING labelloc=t margin=16 penwidth=1.0 style="rounded,filled"
+		New_Funding_Round [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#70568A" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>New_Funding_Round</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">startup &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#65768B" POINT-SIZE="9">joint_companies [TEXT] &nbsp; [field]</FONT></TD></TR>
+</TABLE>>]
+		New_Funding_Round_known_investors [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#70568A" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>New_Funding_Round_known_investors</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">origin_entity_id &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">known_investors &nbsp; [FK*]</FONT></TD></TR>
+</TABLE>>]
+		New_Funding_Round_unknown_investors [label=<<TABLE BORDER="1" BGCOLOR="white" COLOR="#CBD5E1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <TR><TD BGCOLOR="#70568A" ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="white" POINT-SIZE="12"><B>New_Funding_Round_unknown_investors</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#EDF2F7"><FONT FACE="DejaVu Sans" COLOR="#24445D" POINT-SIZE="10"><B>id</B> &nbsp; PK* (unique, non-null)</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#314966" POINT-SIZE="9">origin_entity_id &nbsp; [FK*]</FONT></TD></TR>
+<TR><TD ALIGN="LEFT"><FONT FACE="DejaVu Sans" COLOR="#65768B" POINT-SIZE="9">unknown_investors [TEXT] &nbsp; [field]</FONT></TD></TR>
+</TABLE>>]
+	}
+	CompanyNews -> New_Company [label="B · company_id" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="company_id: 36 מזהי חברה לא נמצאו"]
+	CompanyNews -> News [label="B · news_id" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="news_id: היעד הוא News.id, לא News.news_id"]
+	New_Company_news -> New_Company [label="B · origin_entity_id" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="origin_entity_id: מודל חדשות מקביל, כולל העתקי תוכן"]
+	BaseClassificationModel -> BaseClassificationModel [label="A · root_key" color="#0B806D" constraint=false fontcolor="#0B806D" minlen=1 style=solid tooltip="root_key: 43 שורשים בעומק 0 מפנים לעצמם"]
+	BaseClassificationRelationModel -> BaseClassificationModel [label="A · many roles" color="#0B806D" constraint=true fontcolor="#0B806D" minlen=1 style=solid tooltip="parent_key: יער של 43 עצים; לכל ילד הורה אחד; child_key: כל ילד מופיע בקשר להורה יחיד"]
+	BaseClassificationCompanyModel -> BaseClassificationModel [label="B · classification_key" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="classification_key: 8051 שיוכים למזהי סיווג חסרים: 7851 Sector ו-200 Industry"]
+	BaseClassificationCompanyModel -> New_Company [label="B · company_key" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="company_key: 4891 רשומות עודפות בצירוף company_type/category/company/classification"]
+	New_Company -> BaseClassificationModel [label="A · primary_sector_key" color="#0B806D" constraint=true fontcolor="#0B806D" minlen=1 style=solid tooltip="primary_sector_key: התאמה מלאה של ערכים מאוכלסים; אין להסיק סמנטיקה מעבר לשם השדה"]
+	New_Company_Tag -> New_Company [label="B · company" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="company: 273 רשומות עודפות לפי (company,tag,company_type)"]
+	New_Company_Tag -> New_Tag [label="B · tag" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="tag: 21614 רשומות חסרות tag וגם tag_name"]
+	New_Member -> New_Company [label="B · company" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="company: 64010 מאוכלסים; 938 מזהים שונים חסרים; user מפנה לטבלה חיצונית"]
+	BaseEvent -> New_Company [label="A+B · many roles" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="company_key: חברה הקשורה לאירוע; תפקידה תלוי event_type; other_party_entity_key: 2578 מאוכלסים; תפקיד הצד תלוי was_acquired; stock_exchange_key: 4 מפתחות לא נמצאו לפי המדידה המתועדת; stock_exchange_key: 64 קישורי בורסה תקינים; סטטוס האירוע ה-65 לא פורט; acquired_company_entity_key: הקשר מאומת ל-67 ערכים מאוכלסים בלבד; institution_entity_key: ההתאמה לא מלאה; merged_with_entity_key: 23 מאוכלסים ותואמים; community_key: 128 מזהים שונים; ישויות Community/Accelerator ועוד"]
+	BaseEvent_investors -> BaseEvent [label="A · origin_entity_id" color="#0B806D" constraint=true fontcolor="#0B806D" minlen=1 style=solid tooltip="origin_entity_id: 32967 FundingRoundEvent, 17 ICOEvent, 4 GrantEvent"]
+	BaseEvent_investors -> New_Company [label="B · investors_entity_entity_key" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="investors_entity_entity_key: 14 צמדים כפולים, 15 רשומות עודפות; לא לאחד על סמך צמד"]
+	BaseEvent_grantors -> BaseEvent [label="B · origin_entity_id" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="origin_entity_id: 1853 תקינים מכסים 1760 אירועי Grant; 358 אירועים ללא grantor"]
+	BaseEvent_grantors -> New_Company [label="B · grantors_entity_entity_key" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="grantors_entity_entity_key: אין להסיק מכאן את מצב המפתח ב-6 רשומות האירוע החריגות"]
+	New_Funding_Round -> New_Company [label="B · startup" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="startup: 77 רשומות ללא התאמה מדווחת; פיצול NULL/לא נמצא לא מתועד"]
+	New_Funding_Round_known_investors -> New_Funding_Round [label="A · origin_entity_id" color="#0B806D" constraint=true fontcolor="#0B806D" minlen=1 style=solid tooltip="origin_entity_id: 7 צמדים כפולים זהים מלבד id"]
+	New_Funding_Round_known_investors -> New_Company [label="B · known_investors" color="#B8771D" constraint=true fontcolor="#B8771D" minlen=1 style=dashed tooltip="known_investors: 63 רשומות מפנות ל-10 מזהים שונים שלא נמצאו"]
+	New_Funding_Round_unknown_investors -> New_Funding_Round [label="A · origin_entity_id" color="#0B806D" constraint=true fontcolor="#0B806D" minlen=1 style=solid tooltip="origin_entity_id: unknown_investors הוא שם חופשי, לא מזהה חברה; 12 צמדים כפולים"]
+	New_Company -> New_Company [label="A+B · many roles" color="#B8771D" constraint=false fontcolor="#B8771D" minlen=1 style=dashed tooltip="acquired_by_key: הפניה עצמית מועמדת; תפקיד עסקי לפי שם השדה בלבד; tto_key: הפניה עצמית מועמדת, ללא פירוש עסקי נוסף; r_d_due_to_acquisition_key: כל 87 היעדים שנמצאו הם מסוג Startup"]
+	label="FINDER / FDB - LOGICAL ERD\nOVERVIEW | 16 tables | 30 distinct tested field references | 2026-11-19\n\nSolid green A: all tested non-null FK values matched; dashed amber B: exceptions or scope limitations.  PK* / FK* = logical only, not declared DB constraints."
+}
